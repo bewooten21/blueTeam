@@ -10,10 +10,11 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <form action="index.php" method='post'>
-            <?php
-            echo "login";
-            ?>
+        <form action="index.php" method="POST">
+            <input type="hidden" name="action" value="loggedin">
+            <label>User Name: </label><input type="text" name="username"><br>
+            <label>Password: </label><input type="text" name="password"><br>
+            <input type="submit" value="Login">
         </form>
     </body>
 </html>
