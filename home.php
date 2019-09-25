@@ -11,7 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        echo "I work";
+        echo "I wrk";
+        test commit
+        
         
         ?>
         <a href='index.php?action=login'>Login</a>
