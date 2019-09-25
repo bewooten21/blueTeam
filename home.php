@@ -12,7 +12,7 @@ and open the template in the editor.
     <body>
         <?php
         echo "I wrk";
-        test commit
+        //test commit
         
         
         ?>
