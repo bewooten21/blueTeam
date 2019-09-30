@@ -1,13 +1,16 @@
 <?php
+require_once 'model/database.php';
+require_once 'model/level_db.php';
+require_once 'model/level.php';
+
 class question {
     private $firstNumber, $secondNumber, $answer, $level, $correct;
-    function __construct($firstNumber, $secondNumber, $answer, $level, $correct) {
+    function __construct(level $level = null) {
         
-        $this->firstNumber = $firsNumber;
-        $this->secondNumber = $secondNumber;
-        $this->answer = $answer;
-        $this->pWord = $level;
-        $this->level = $correct;
+        $this->level = $level ?: level(1,'addition',1);
+        
+        createQuestion($level);
+        
     }
     
 
@@ -51,5 +54,27 @@ class question {
     function setCorrect($correct) {
         $this->correct = $correct;
     }
+    
+    function createQuestion($level){
+        $max;
+        $min;
+       if($level->getArithmeticType() !== 'division'){
+           if($level->getDigits() === 1){
+               $min = 0;
+               $max = 9;
+               $this->setFirstNumber(rand($min,$max));
+               $this->setSecondNumber(rand($min,$max));
+               
+               
+           }elseif($level->getDigits() === 2){
+               
+           }elseif($level->getDigits() === 3){
+           
+           }
+        }else{
+            
+        }
+    }
+    
 }
 ?>
