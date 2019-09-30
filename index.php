@@ -1,4 +1,11 @@
 <?php 
+require_once 'model/database.php';
+require_once 'model/user_db.php';
+require_once 'model/user.php';
+
+$lifetime = 60 * 60 * 24 * 14;    // 2 weeks in seconds
+session_set_cookie_params($lifetime, '/');
+session_start();
 
 $userName = '';
 $password = '';
@@ -17,15 +24,66 @@ switch ($action){
         include('view/home.php');
         die();
         break;
-    case 'login':
-        include('view/login.php');
+    
+    case 'viewLogin';
+        $message = '';
+        
+        if (!isset($uName)) {
+            $uName = '';
+        }
+        $pWord = '';
+        if (!isset($error_message)) {
+            $error_message = [];
+            $error_message['uName'] = '';
+            $error_message['pWord'] = '';
+        }
+
+        include 'view/login.php';
         die();
         break;
-    
-    case 'loggedin':
-        $userName = filter_input(INPUT_POST, 'username');
-        $password = filter_input(INPUT_POST, 'password');
-        include('view/profile.php');
+
+    case 'loggingIn';     
+        $uName = filter_input(INPUT_POST, 'uName');
+        $pWord = filter_input(INPUT_POST, 'pWord');
+        $checkUserName = user_db::get_user_by_username($uName);
+        $message = '';
+
+        if ($checkUserName != FALSE) {
+            $theUser = user_db::validate_user_login($uName);
+
+            if ($pWord === $theUser->getPWord()) {
+                $_SESSION['currentUser'] = $theUser;
+                include 'view/profile.php';
+            } else {
+                $error_message['uName'] = '';
+                $error_message['pWord'] = '';
+                include 'view/login.php';
+            }
+        } else {
+            $error_message['uName'] = 'No User By That Name';
+            $error_message['pWord'] = '';
+            include 'view/login.php';
+        }
+        
+        die();
+        break;
+        
+    case 'logout':
+        session_destroy();
+
+        $message = "You have successfully logged out!";
+        
+        if (!isset($uName)) {
+            $uName = '';
+        }
+        $pWord = '';
+        if (!isset($error_message)) {
+            $error_message = [];
+            $error_message['uName'] = '';
+            $error_message['pWord'] = '';
+        }
+
+        include 'view/login.php';
         die();
         break;
 }

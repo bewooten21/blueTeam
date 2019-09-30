@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `teamblue`
 --
+CREATE DATABASE IF NOT EXISTS `teamblue` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `teamblue`;
 
 -- --------------------------------------------------------
 
@@ -29,8 +31,27 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `level` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `arithmeticType` varchar(40) NOT NULL,
+  `digits` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `level`
+--
+
+INSERT INTO `level` (`id`, `arithmeticType`, `digits`) VALUES
+(1, 'addition', 1),
+(2, 'addition', 2),
+(3, 'addition', 3),
+(4, 'subtraction', 1),
+(5, 'subtraction', 2),
+(6, 'subtraction', 3),
+(7, 'multiplication', 1),
+(8, 'multiplication', 2),
+(9, 'multiplication', 3),
+(10, 'division', 1),
+(11, 'division', 2);
 
 -- --------------------------------------------------------
 
@@ -52,8 +73,20 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `firstName` varchar(30) NOT NULL,
   `lastName` varchar(40) NOT NULL,
-  `level` int(11) NOT NULL
+  `userName` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `level` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `userName`, `password`, `level`) VALUES
+(1, 'Brad', 'Wooten', 'bwooten','Password1', 11),
+(2, 'Cody', 'Sterup', 'csterup', 'Password12', NULL),
+(3, 'Tyler', 'Stading', 'tstading', 'Password123', NULL),
+(4, 'Glenn', 'Ray', 'gray', 'Password1234', NULL);
 
 --
 -- Indexes for dumped tables

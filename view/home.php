@@ -16,6 +16,6 @@ and open the template in the editor.
         
         
         ?>
-        <a href='index.php?action=login'>Login</a>
+        <a href='index.php?action=viewLogin'>Login</a>
     </body>
 </html>

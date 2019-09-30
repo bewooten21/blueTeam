@@ -5,17 +5,18 @@
  * @author ts526610
  */
 class user {
-    private $ID, $fName, $lName, $pWord;
-    function __construct($ID, $fName, $lName, $pWord) {
+    private $id, $fName, $lName, $uName, $pWord, $level;
+    function __construct($id, $fName, $lName, $uName, $pWord, $level) {
         
-        $this->ID = $ID;
+        $this->id = $id;
         $this->fName = $fName;
         $this->lName = $lName;
+        $this->uName = $uName;
         $this->pWord = $pWord;
-        
+        $this->level = $level;
     }
     
-    function getID() {
+    function getId() {
         return $this->ID;
     }
 
@@ -27,12 +28,20 @@ class user {
         return $this->lName;
     }
 
-    function getPWord($pWord) {
-        $this->pWord = $pWord;
+    function getUName() {
+        return $this->uName;
     }
     
-    function setID($ID) {
-        $this->ID = $ID;
+    function getPWord() {
+        return $this->pWord;
+    }
+    
+     function getLevel() {
+        return $this->level;
+    }
+    
+    function setId($id) {
+        $this->id = $id;
     }
 
     function setFName($fName) {
@@ -43,8 +52,15 @@ class user {
         $this->lName = $lName;
     }
     
+    function setUName($uName) {
+        $this->uName = $uName;
+    }
+    
     function setPWord($pWord) {
         $this->pWord = $pWord;
     }
     
+    function setLevel($level) {
+        $this->level = $level;
+    }
 }
