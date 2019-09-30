@@ -18,7 +18,7 @@
                         <label>New Password: </label>
                         <input type="password" name="pw" value=""><div id="error"><?php echo htmlspecialchars($error_message); ?></div><br>
                         <label>Confirm Password: </label>
-                        <input type="password" name="cPw"><div id="error"><?php echo htmlspecialchars($error_message); ?></div><br>
+                        <input type="password" name="cPw"><br>
                     </div>
 
                     <div id="buttons">

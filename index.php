@@ -52,6 +52,7 @@ switch ($action){
             $theUser = user_db::validate_user_login($uName);
 
             if ($pWord === $theUser->getPWord()) {
+                $pwMessage="";
                 $_SESSION['currentUser'] = $theUser;
                 include 'view/profile.php';
             } else {
