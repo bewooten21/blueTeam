@@ -14,7 +14,7 @@ $action= filter_input(INPUT_POST, 'action');
 if($action=== null){
     $action = filter_input(INPUT_GET, 'action');
     if($action === null){
-        $action = 'home';
+        $action = 'viewLogin';
     }
 }
         
@@ -86,4 +86,19 @@ switch ($action){
         include 'view/login.php';
         die();
         break;
+        
+    case 'resetPw':
+        
+        $error_message="";
+       
+        include('view/resetPw.php');
+        die();
+        break;
+    case 'resetPwVal':
+        $newPw= filter_input(INPUT_POST, 'pw');
+        $cNewPw= filter_input(INPUT_POST, 'cPw');
+        include 'model/resetPwVal.php';
+        die();
+        break;
+        
 }

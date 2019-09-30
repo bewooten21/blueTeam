@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title></title>
+        <title>MathWiz Login</title>
+        <link rel="stylesheet" type="text/css" href="main.css">
     </head>
+
     <body>
-        <form action="index.php" method="post">
-            <input type="hidden" name="action" value="chnagePw"
-        </form>
+        <main>
+            <div id="formWrap">
+            <header>MathWiz</header>
+            
+                <h2>Change Password</h2>
+                <!--<p><?php echo htmlspecialchars($message) ?></p>-->
+                <form action="index.php" method="post">
+                    <input type="hidden" name="action" value="resetPwVal">
+                    <div id="data">
+                        <label>New Password: </label>
+                        <input type="password" name="pw" value=""><div id="error"><?php echo htmlspecialchars($error_message); ?></div><br>
+                        <label>Confirm Password: </label>
+                        <input type="password" name="cPw"><div id="error"><?php echo htmlspecialchars($error_message); ?></div><br>
+                    </div>
+
+                    <div id="buttons">
+                        <label>&nbsp;</label>
+                        <input type="submit" value="Submit"><br>
+                        </form>
+
+                        
+                
+                    </div>
+
+            </div>
+            <footer>
+                <p>Blue Team &#9400; Fall 2019</p>
+            </footer>
+        </main>
     </body>
 </html>
