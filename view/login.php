@@ -29,7 +29,7 @@
                         <form action="index.php" method="post">
                             <input type="hidden" name="action" value="logout">
                             <label>&nbsp;</label>
-                            <?php if(!empty($_SESSION['currentUser'])){?><input type="submit" value="Logout"><?php } ?><br>
+                            <?php if(empty($_SESSION['currentUser'])){?><input type="submit" value="Logout"><?php } ?><br>
                         </form>
                 
                     </div>
