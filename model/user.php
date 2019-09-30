@@ -64,3 +64,4 @@ class user {
         $this->level = $level;
     }
 }
+?>
