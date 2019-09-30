@@ -31,7 +31,7 @@
                             <label>&nbsp;</label>
                             <input type="submit" value="Logout"><br>
                         </form>
-                <a href='index.php?action=resetPw'>Change Password</a>
+                
                     </div>
 
             </div>

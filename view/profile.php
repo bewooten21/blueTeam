@@ -18,6 +18,7 @@
                         <input type="submit" value="Logout"><br>
                     </form>
                 </div>
+                <?php if(!empty($_SESSION['currentUser'])){?><a href='index.php?action=resetPw'>Change Password</a><?php } ?>
             </div>
             <footer>
                 <p>Blue Team &#9400; Fall 2019</p>

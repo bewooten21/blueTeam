@@ -10,7 +10,7 @@
             <div id="formWrap">
             <header>MathWiz</header>
             
-                <h2>Change Password</h2>
+                <h2>Change Password for <?php echo htmlspecialchars($_SESSION['currentUser']->getUName()); ?></h2>
                 <!--<p><?php echo htmlspecialchars($message) ?></p>-->
                 <form action="index.php" method="post">
                     <input type="hidden" name="action" value="resetPwVal">

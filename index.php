@@ -95,8 +95,7 @@ switch ($action){
         die();
         break;
     case 'resetPwVal':
-        $newPw= filter_input(INPUT_POST, 'pw');
-        $cNewPw= filter_input(INPUT_POST, 'cPw');
+        
         include 'model/resetPwVal.php';
         die();
         break;

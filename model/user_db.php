@@ -161,4 +161,19 @@ class user_db {
 
         return $theUser;
     }
+    
+    public static function reset_pw($uName,$pw){
+        $db= Database::getDB();
+        
+        $query= 'Update user
+               set password= :pw
+               WHERE userName= :uName';
+        
+        $statement = $db->prepare($query);
+        $statement->bindValue('uName', $uName);
+        $statement->bindValue('pw', $pw);
+        $statement->execute();
+        $statement->closeCursor();
+        
+    }
 }
