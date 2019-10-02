@@ -114,6 +114,7 @@ switch ($action){
         break;
     
     case 'submitAnswer':
-        include('model/checkAnswer');
+        
+        
         
 }
