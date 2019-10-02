@@ -1,14 +1,16 @@
 <?php
 include_once 'model/question.php';
 require_once 'model/level.php';
+require_once 'model/level_db.php';
 
 class exam {
     private $questions = [],$level,$time,$questionQuantity;
     
     function __construct($questionQuantity = null, $level = null, $time = null) {
-        $this->questoionQuantity = $questionQuantity;
+        $this->questionQuantity = $questionQuantity;
         $this->level= $level;
         $this->time = $time;
+        $this->questions;
     }
     
     function getQuestions() {
@@ -43,17 +45,20 @@ class exam {
         $this->questionQuantity = $questionQuantity;
     }
     
-    public static function createBaselineExam(){
-        if(!is_set($this->questionQuantity)){
-            $qLevel = 1;
+    function createBaselineExam(){
+        $levels  = level_db::select_all();
+        
+        if(! isset($this->questionQuantity)){
+            $qLevelID = 1;
+            $qLevel = $levels[$qLevelID];
             $count = 0;
-            while($qLevel <= 11){
+            while($qLevelID <= 11){
                 while($count <5){;
                     $question = new question($qLevel);
                     array_push($this->questions, $question);
                     $count++;
                 }
-                $qLevel++;
+                $qLevelID++;
             }
         }
         else{
