@@ -58,13 +58,13 @@ class question {
     function createQuestion($level){
         $max;
         $min;
-        if($level->getDigits() === 1){
+        if($level->getDigits() == 1){
                $min = 0;
                $max = 9; 
-        }elseif($level->getDigits() === 2){
+        }elseif($level->getDigits() == 2){
                $min = 10;
                $max = 99;
-        }elseif($level->getDigits() === 3){
+        }elseif($level->getDigits() == 3){
                $min = 100;
                $max = 999;
         }

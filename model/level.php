@@ -13,11 +13,11 @@ class level {
     }
 
     function getArithmeticType() {
-        return $this->fName;
+        return $this->arithmeticType;
     }
 
     function getDigits() {
-        return $this->lName;
+        return $this->digits;
     }
     
     function setId($id) {
@@ -25,7 +25,7 @@ class level {
     }
 
     function setArithmeticType($arithmeticType) {
-        $this->fName = $fName;
+        $this->arithmeticType = $arithmeticType;
     }
 
     function setDigits($digits) {
