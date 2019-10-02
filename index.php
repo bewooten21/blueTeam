@@ -58,10 +58,6 @@ switch ($action){
                 $pwMessage="";
                 $_SESSION['currentUser'] = $theUser;
                 
-                $testLevel = level_db::get_level_by_id(2);
-                $question = new question($testLevel);
-                $_SESSION['testQuestion'] = $question;
-                
                 include 'view/profile.php';
             } else {
                 $error_message['uName'] = '';
