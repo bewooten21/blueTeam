@@ -5,6 +5,7 @@ require_once 'model/user.php';
 require_once 'model/level_db.php';
 require_once 'model/level.php';
 require_once 'model/question.php';
+require_once 'model/exam.php';
 
 $lifetime = 60 * 60 * 24 * 14;    // 2 weeks in seconds
 session_set_cookie_params($lifetime, '/');
@@ -106,6 +107,11 @@ switch ($action){
         break;
     
     case 'takeBaseline':
+        $baselineExam = new exam();
+        
+        $baselineExam->createBaselineExam();
+        
+        $_SESSION['baselineExam'] = $baselineExam;
         
         $error_message='';
         $message='';
