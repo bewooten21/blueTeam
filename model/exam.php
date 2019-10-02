@@ -6,7 +6,7 @@ class exam {
     private $questions = [],$level,$time,$questionQuantity;
     
     function __construct($questionQuantity = null, $level = null, $time = null) {
-        $this->questoionQuantity = $questionQuantity;
+        $this->questionQuantity = $questionQuantity;
         $this->level= $level;
         $this->time = $time;
     }
@@ -43,8 +43,8 @@ class exam {
         $this->questionQuantity = $questionQuantity;
     }
     
-    public static function createBaselineExam(){
-        if(!is_set($this->questionQuantity)){
+ function createBaselineExam(){
+        if(!isset($this->questionQuantity)){
             $qLevel = 1;
             $count = 0;
             while($qLevel <= 11){
