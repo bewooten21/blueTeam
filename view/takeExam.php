@@ -15,7 +15,7 @@
                 <form action="index.php" method="post">
                     <input type="hidden" name="action" value="submitAnswer">
                     <div id="data">
-                       <?php foreach($questions as $q) : ?> <label>Question: <?php $q-> </label>
+                       <?php foreach($questions as $q) : ?> <label>Question: </label>
                         <br>
                         <?php endforeach; ?>
                         <label>Answer: </label>
