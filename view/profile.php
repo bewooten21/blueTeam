@@ -11,6 +11,7 @@
                 <header>MathWiz</header>
                 <h3>Hello <?php echo htmlspecialchars($_SESSION['currentUser']->getFName() . ' ' . $_SESSION['currentUser']->getLName()); ?></h3>
                 <p>Your current level is <?php $userLevel = is_null($_SESSION['currentUser']->getLevel()) ? 'not set!' : $_SESSION['currentUser']->getLevel(); echo htmlspecialchars($userLevel) ?></p>
+                <p><?php echo $_SESSION['testQuestion']->getFirstNumber() . ' + '; echo $_SESSION['testQuestion']->getSecondNumber() . ' = '; echo $_SESSION['testQuestion']->getAnswer(); ?></p>
                 <p> <?php echo $pwMessage ?> <p>
                 <div id="buttons">
                     <form action="index.php" method="post">

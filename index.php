@@ -2,6 +2,9 @@
 require_once 'model/database.php';
 require_once 'model/user_db.php';
 require_once 'model/user.php';
+require_once 'model/level_db.php';
+require_once 'model/level.php';
+require_once 'model/question.php';
 
 $lifetime = 60 * 60 * 24 * 14;    // 2 weeks in seconds
 session_set_cookie_params($lifetime, '/');
@@ -54,6 +57,11 @@ switch ($action){
             if ($pWord === $theUser->getPWord()) {
                 $pwMessage="";
                 $_SESSION['currentUser'] = $theUser;
+                
+                $testLevel = level_db::get_level_by_id(2);
+                $question = new question($testLevel);
+                $_SESSION['testQuestion'] = $question;
+                
                 include 'view/profile.php';
             } else {
                 $error_message['uName'] = '';

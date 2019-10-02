@@ -11,7 +11,7 @@ class level_db {
         $levels = [];
 
         foreach ($rows as $value) {
-            $levels[$value['id']] = new $level($value['id'], $value['arithmeticType'], $value['digits']);
+            $levels[$value['id']] = new level($value['id'], $value['arithmeticType'], $value['digits']);
         }
         $statement->closeCursor();
 
@@ -29,7 +29,7 @@ class level_db {
         $statement->execute();
         $value = $statement->fetch();
         
-        $level[$value['id']] = new $level($value['id'], $value['arithmeticType'], $value['digits']);
+        $level = new level($value['id'], $value['arithmeticType'], $value['digits']);
         
         $statement->closeCursor();
 
@@ -49,7 +49,7 @@ class level_db {
         $levels = [];
 
         foreach ($rows as $value) {
-            $levels[$value['id']] = new $level($value['id'], $value['arithmeticType'], $value['digits']);
+            $levels[$value['id']] = new level($value['id'], $value['arithmeticType'], $value['digits']);
         }
         $statement->closeCursor();
         

@@ -9,7 +9,7 @@ class question {
         
         $this->level = $level ?: level(1,'addition',1);
         
-        createQuestion($level);
+        $this->createQuestion($level);
         
     }
     
@@ -58,21 +58,37 @@ class question {
     function createQuestion($level){
         $max;
         $min;
-       if($level->getArithmeticType() !== 'division'){
-           if($level->getDigits() === 1){
+        if($level->getDigits() === 1){
                $min = 0;
-               $max = 9;
-               $this->setFirstNumber(rand($min,$max));
-               $this->setSecondNumber(rand($min,$max));
-               
-               
-           }elseif($level->getDigits() === 2){
-               
-           }elseif($level->getDigits() === 3){
+               $max = 9; 
+        }elseif($level->getDigits() === 2){
+               $min = 10;
+               $max = 99;
+        }elseif($level->getDigits() === 3){
+               $min = 100;
+               $max = 999;
+        }
+       if($level->getArithmeticType() === 'division' || $level->getArithmeticType() === 'subtraction'){
            
+           $this->setFirstNumber(rand($min,$max));
+           $this->setSecondNumber(rand($min,$max));
+           while($this->getFirstNumber() < $this->getSecondNumber()){
+               $this->setSecondNumber(rand($min,$max));
            }
+           if($level->getArithmeticType() === 'division'){
+               $this->setAnswer($this->getFirstNumber()/ $this->getSecondNumber()); 
+           }else if($level->getArithmeticType() === 'subtraction'){
+               $this->setAnswer($this->getFirstNumber() - $this->getSecondNumber());
+           }
+           
         }else{
-            
+            $this->setFirstNumber(rand($min,$max));
+            $this->setSecondNumber(rand($min,$max));
+            if($level->getArithmeticType() === 'addition'){
+               $this->setAnswer($this->getFirstNumber() + $this->getSecondNumber()); 
+           }else if($level->getArithmeticType() === 'multiplication'){
+               $this->setAnswer($this->getFirstNumber() * $this->getSecondNumber());
+           }
         }
     }
     
