@@ -1,9 +1,11 @@
 <?php
-include_once 'model/question';
+include_once 'model/question.php';
+require_once 'model/level.php';
+
 class exam {
     private $questions = [],$level,$time,$questionQuantity;
     
-    function __construct($questionQuantity, $level, $time) {
+    function __construct($questionQuantity = null, $level = null, $time = null) {
         $this->questoionQuantity = $questionQuantity;
         $this->level= $level;
         $this->time = $time;
@@ -41,25 +43,38 @@ class exam {
         $this->questionQuantity = $questionQuantity;
     }
     
-    public static function createExam($lvl){
-        if($lvl === "m"){
-            $levels = 1;
+    public static function createBaselineExam(){
+        if(!is_set($this->questionQuantity)){
+            $qLevel = 1;
             $count = 0;
-            while(level <= 11){
+            while($qLevel <= 11){
                 while($count <5){;
-                    $question = new question();
-                    $questions[$questions.length] = $newQuestion;
+                    $question = new question($qLevel);
+                    array_push($this->questions, $question);
                     $count++;
                 }
-                $levels++;
+                $qLevel++;
             }
         }
         else{
-            while($count < $this->questionQuantity){
-                $question = new question($this->level);
-                $questions[$questions.length] = $newQuestion;
-                $count++;
+            $qLevel = 1;
+            $count = 0;
+            while($qLevel <= 11){
+                while($count < $this->questionQuantity){;
+                    $question = new question($qLevel);
+                    array_push($this->questions, $question);
+                    $count++;
+                }
+                $qLevel++;
             }
         }
+    }
+    
+    public static function createPracticeDrill(){
+        while($count < $this->questionQuantity){
+                $question = new question($this->level);
+                array_push($this->questions, $question);
+                $count++;
+            }
     }
 }
