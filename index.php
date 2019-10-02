@@ -104,5 +104,16 @@ switch ($action){
         include 'model/resetPwVal.php';
         die();
         break;
+    
+    case 'takeBaseline':
+        
+        $error_message='';
+        $message='';
+        include ('view/takeExam.php');
+        die();
+        break;
+    
+    case 'submitAnswer':
+        include('model/checkAnswer');
         
 }

@@ -18,6 +18,11 @@
                         <label>&nbsp;</label>
                         <input type="submit" value="Logout"><br>
                     </form>
+                    <form action="index.php" method="post">
+                        <input type="hidden" name="action" value="takeBaseline">
+                        <label>&nbsp;</label>
+                        <input type="submit" value="Take Baseline"><br>
+                    </form>
                 </div>
                 <?php if(!empty($_SESSION['currentUser'])){?><a href='index.php?action=resetPw'>Change Password</a><?php } ?>
             </div>
