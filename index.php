@@ -57,7 +57,7 @@ switch ($action){
                 include 'view/profile.php';
             } else {
                 $error_message['uName'] = '';
-                $error_message['pWord'] = '';
+                $error_message['pWord'] = 'Wrong password';
                 include 'view/login.php';
             }
         } else {
