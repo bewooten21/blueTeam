@@ -40,7 +40,7 @@
                         </div>
                     <div id="buttons">
                         <label>&nbsp;</label>
-                        <input type="submit" value="Login"><br>
+                        <input type="submit" value="Submit"><br>
                         </form>
 
                         <form action="index.php" method="post">

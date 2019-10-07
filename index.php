@@ -120,6 +120,17 @@ switch ($action){
         break;
     
     case 'submitAnswer':
+        $answers=[];
+        
+        for ($x = 1; $x <= 55; $x++){
+            $answer= filter_input(INPUT_POST, 'answer'.$x);
+            array_push($answers, $answer);
+        }
+        $_SESSION['answers']=$answers;
+        include('model/valAnswers.php');
+        
+        die();
+        break;
         
         
         
