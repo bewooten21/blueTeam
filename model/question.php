@@ -58,6 +58,7 @@ class question {
     function createQuestion($level){
         $max;
         $min;
+      do{ 
         if($level->getDigits() == 1){
                $min = 0;
                $max = 9; 
@@ -71,15 +72,20 @@ class question {
        if($level->getArithmeticType() === 'division' || $level->getArithmeticType() === 'subtraction'){
            
            $this->setFirstNumber(rand($min,$max));
+           if($level->getArithmeticType() === 'division' && $level->getDigits() == 1){
+                $min = 1;      
+           }
+           $max = $this->getFirstNumber();      
+           if($max === 0 && $level->getArithmeticType() === 'division'){
+                $max = 9;      
+           }elseif($level->getDigits() == 2 && $level->getArithmeticType() === 'division'){
+               $max = $this->getFirstNumber() - 1;
+           }
            $this->setSecondNumber(rand($min,$max));
            
-           while($this->getSecondNumber() === 0 && $this->getFirstNumber() < $this->getSecondNumber()){               
-               $this->setSecondNumber(rand($min,$max));
-           }
+           
+           
            if($level->getArithmeticType() === 'division'){
-               if($this->getFirstNumber()===0){
-                   $this->setSecondNumber(5);
-               }
                $this->setAnswer($this->getFirstNumber()/ $this->getSecondNumber()); 
            }else if($level->getArithmeticType() === 'subtraction'){
                $this->setAnswer($this->getFirstNumber() - $this->getSecondNumber());
@@ -94,6 +100,7 @@ class question {
                $this->setAnswer($this->getFirstNumber() * $this->getSecondNumber());
            }
         }
+        } while ($level->getArithmeticType() === 'division' && $this->getFirstNumber()%$this->getSecondNumber() > 0);
     }
     
 }
