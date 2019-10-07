@@ -15,13 +15,25 @@
                 <form action="index.php" method="post">
                     <input type="hidden" name="action" value="submitAnswer">
                     <div id="data">
-                       <?php foreach($baselineExam as $q) : ?> <label>Question: <?php $q->getFirstNumber() . " " .$q->getFirstNumber(); ?> </label>
+                       <?php foreach($_SESSION['baselineExam']->getQuestions() as $q) : ?> 
+                        <?php $signageWord = $q->getLevel()->getArithmeticType(); $sign = '';
+                                if($signageWord === 'addition'){
+                                    $sign = '+';
+                                } elseif ($signageWord === 'subtraction'){
+                                    $sign = '-';
+                                }elseif ($signageWord === 'multiplication'){
+                                    $sign = '*';
+                                }elseif ($signageWord === 'division'){
+                                    $sign = '/';
+                                }
+?>
+                        <label>Question: <?php echo $q->getFirstNumber() . " " . $sign . ' ' .$q->getSecondNumber(); ?> </label>
                         <br>
-                        <?php endforeach; ?>
+                        
                         <label>Answer: </label>
                         <input type="text" name="answer"><div id="error"><?php echo htmlspecialchars($error_message); ?></div><br>
                     </div>
-
+                    <?php endforeach; ?>
                     <div id="buttons">
                         <label>&nbsp;</label>
                         <input type="submit" value="Login"><br>
