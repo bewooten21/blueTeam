@@ -23,6 +23,11 @@
                         <label>&nbsp;</label>
                         <input type="submit" value="Take Baseline"><br>
                     </form>
+                    <form action="index.php" method="post">
+                        <input type="hidden" name="action" value="takeDrill">
+                        <label>&nbsp;</label>
+                        <input type="submit" value="Take Drill"><br>
+                    </form>
                 </div>
                 <?php if(!empty($_SESSION['currentUser'])){?><a href='index.php?action=resetPw'>Change Password</a><?php } ?>
             </div>

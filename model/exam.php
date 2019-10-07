@@ -6,7 +6,7 @@ require_once 'model/level_db.php';
 class exam {
     private $questions = [],$level,$time,$questionQuantity;
     
-    function __construct($questionQuantity = null, $level = null, $time = null) {
+    function __construct($questionQuantity = null, level $level = null, $time = null) {
         $this->questionQuantity = $questionQuantity;
         $this->level= $level;
         $this->time = $time;
@@ -25,7 +25,7 @@ class exam {
         return $this->level;
     }
 
-    function setQLevel($level) {
+    function setQLevel(level $level) {
         $this->level = $$level;
     }
     
@@ -76,11 +76,22 @@ class exam {
         }
     }
     
-    public static function createPracticeDrill(){
-        while($count < $this->questionQuantity){
+    function createPracticeDrill(){
+        if(isset($this->questionQuantity) && $this->questionQuantity != null){
+            $count = 0;
+            while($count < $this->questionQuantity){
                 $question = new question($this->level);
                 array_push($this->questions, $question);
                 $count++;
             }
+        }
+        else{
+            $count = 0;
+            while($count < 5){
+                $question = new question($this->level);
+                array_push($this->questions, $question);
+                $count++;
+            }
+        }
     }
 }

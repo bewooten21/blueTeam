@@ -131,6 +131,15 @@ switch ($action){
         
         die();
         break;
+    case 'takeDrill':
+        $drill = new exam();
+        $user = $_SESSION['currentUser'];
+        $drill->setQLevel(level_db::get_level_by_id($user->getLevel()));
+        $drill->createPracticeDrill();
+        $_SESSION['drill'] = $drill;
+        $errorMsg = '';
+        $message = '';
+        
         
         
         
