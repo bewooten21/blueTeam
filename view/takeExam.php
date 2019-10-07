@@ -15,8 +15,11 @@
                 <form action="index.php" method="post">
                     <input type="hidden" name="action" value="submitAnswer">
                     <div id="data">
-                       <?php foreach($_SESSION['baselineExam']->getQuestions() as $q) : ?> 
-                        <?php $signageWord = $q->getLevel()->getArithmeticType(); $sign = '';
+                       <?php $count = 1;
+                       foreach($_SESSION['baselineExam']->getQuestions() as $q) : ?> 
+                        <?php 
+                        $signageWord = $q->getLevel()->getArithmeticType();
+                        $sign = '';
                                 if($signageWord === 'addition'){
                                     $sign = '+';
                                 } elseif ($signageWord === 'subtraction'){
@@ -31,8 +34,9 @@
                         <br>
                         
                         <label>Answer: </label>
-                        <input type="text" name="answer"><div id="error"><?php echo htmlspecialchars($error_message); ?></div><br>                
-                    <?php endforeach; ?>
+                        <input type="text" name="answer<?php echo $count ?>"><div id="error"><?php echo htmlspecialchars($error_message); ?></div><br>                
+                    <?php $count++; ?>
+                            <?php endforeach; ?>
                         </div>
                     <div id="buttons">
                         <label>&nbsp;</label>

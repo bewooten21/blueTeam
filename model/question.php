@@ -72,10 +72,14 @@ class question {
            
            $this->setFirstNumber(rand($min,$max));
            $this->setSecondNumber(rand($min,$max));
-           while($this->getSecondNumber() > 0 && $this->getFirstNumber() < $this->getSecondNumber()){
+           
+           while($this->getSecondNumber() === 0 && $this->getFirstNumber() < $this->getSecondNumber()){               
                $this->setSecondNumber(rand($min,$max));
            }
            if($level->getArithmeticType() === 'division'){
+               if($this->getFirstNumber()===0){
+                   $this->setSecondNumber(5);
+               }
                $this->setAnswer($this->getFirstNumber()/ $this->getSecondNumber()); 
            }else if($level->getArithmeticType() === 'subtraction'){
                $this->setAnswer($this->getFirstNumber() - $this->getSecondNumber());
