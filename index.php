@@ -120,6 +120,26 @@ switch ($action){
         break;
     
     case 'submitAnswer':
+        $answers=[];
+        
+        for ($x = 1; $x <= 55; $x++){
+            $answer= filter_input(INPUT_POST, 'answer'.$x);
+            array_push($answers, $answer);
+        }
+        $_SESSION['answers']=$answers;
+        include('model/valAnswers.php');
+        
+        die();
+        break;
+    case 'takeDrill':
+        $drill = new exam();
+        $user = $_SESSION['currentUser'];
+        $drill->setQLevel(level_db::get_level_by_id($user->getLevel()));
+        $drill->createPracticeDrill();
+        $_SESSION['drill'] = $drill;
+        $errorMsg = '';
+        $message = '';
+        
         
         
         
