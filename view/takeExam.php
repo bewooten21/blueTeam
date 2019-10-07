@@ -31,9 +31,9 @@
                         <br>
                         
                         <label>Answer: </label>
-                        <input type="text" name="answer"><div id="error"><?php echo htmlspecialchars($error_message); ?></div><br>
-                    </div>
+                        <input type="text" name="answer"><div id="error"><?php echo htmlspecialchars($error_message); ?></div><br>                
                     <?php endforeach; ?>
+                        </div>
                     <div id="buttons">
                         <label>&nbsp;</label>
                         <input type="submit" value="Login"><br>

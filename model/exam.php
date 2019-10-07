@@ -50,9 +50,11 @@ class exam {
         
         if(! isset($this->questionQuantity)){
             $qLevelID = 1;
-            $qLevel = $levels[$qLevelID];
-            $count = 0;
+            
+            
             for($qLevelID; $qLevelID <= 11; $qLevelID++){
+                $count = 0;
+                $qLevel = $levels[$qLevelID];
                 while($count <5){
                     $question = new question($qLevel);
                     array_push($this->questions, $question);
