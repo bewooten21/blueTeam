@@ -106,6 +106,11 @@ switch ($action){
         die();
         break;
     
+    case 'viewProfile':
+        include 'view/profile.php';
+        die();
+        break;
+    
     case 'takeBaseline':
         $baselineExam = new exam();
         
@@ -120,14 +125,44 @@ switch ($action){
         break;
     
     case 'submitAnswer':
-        $answers=[];
+        $answersTemp= filter_input_array(INPUT_POST);
+        $answers = $answersTemp['answer'];
+        $incorrectAnswers = [];
+        $questionIncorrect = [];
+        $countIncorrect = 0; 
+        $studentLevel = 11;
+        $countTotal = 0;
         
-        for ($x = 1; $x <= 55; $x++){
-            $answer= filter_input(INPUT_POST, 'answer'.$x);
-            array_push($answers, $answer);
+        for ($x = 54; $x >= 0; $x--){
+            if(isset($answers[$x]) && $answers[$x] == $_SESSION['baselineExam']->getQuestions()[$x]->getAnswer()){
+                $_SESSION['baselineExam']->getQuestions()[$x]->setCorrect(TRUE); 
+            }else{
+                array_push($incorrectAnswers, $answers[$x]);
+                array_push($questionIncorrect, $_SESSION['baselineExam']->getQuestions()[$x]);
+                $countIncorrect++;
+                $_SESSION['baselineExam']->getQuestions()[$x]->setCorrect(FALSE);
+                
+                if($_SESSION['baselineExam']->getQuestions()[$x]->getLevel()->getId() < $studentLevel){
+                    $studentLevel = $_SESSION['baselineExam']->getQuestions()[$x]->getLevel()->getId();
+                }
+            }
+            $countTotal++;
         }
-        $_SESSION['answers']=$answers;
-        include('model/valAnswers.php');
+        
+        $_SESSION['incorrectAnswers'] = $answers;
+        $_SESSION['incorrectQuestions'] = $questionIncorrect;
+        $_SESSION['numIncorrect'] = $countIncorrect;
+        $_SESSION['percentage'] = $countIncorrect/$countTotal;
+        $_SESSION['currentUser']->setLevel($studentLevel);
+//        user_db::update_user_level($_SESSION['currentUser']->getId(), $studentLevel);
+        include('view/baselineResults.php');
+        
+//        for ($x = 1; $x <= 55; $x++){
+//            $answer= filter_input(INPUT_POST, 'answer'.$x);
+//            array_push($answers, $answer);
+//        }
+//        $_SESSION['answers']=$answers;
+//        include('model/valAnswers.php');
         
         die();
         break;
@@ -141,7 +176,8 @@ switch ($action){
         $message = '';
         include('view/takeDrill.php');
         
-        
+        die();
+        break;
         
         
 }

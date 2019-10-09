@@ -10,13 +10,14 @@
             <div id="formWrap">
             <header>MathWiz</header>
             
-                <h2><?php echo htmlspecialchars($_SESSION['currentUser']->getUName()); ?></h2>
-                <p><?php echo htmlspecialchars($message) ?></p>
+                <h2><?php echo htmlspecialchars($_SESSION['currentUser']->getUName() . ' you will start at level ' . $_SESSION['currentUser']->getLevel()); ?></h2>
                 <form action="index.php" method="post">
-                    <input type="hidden" name="action" value="submitAnswer">
+                    <input type="hidden" name="action" value="viewProfile">
                     <div id="data">
-                       <?php foreach($_SESSION['baselineExam']->getQuestions() as $q) : ?> 
+                       <?php for($x=0; $x < count($_SESSION['incorrectQuestions']); $x++) : ?> 
                         <?php 
+                        $q = $_SESSION['incorrectQuestions'][$x];
+                        $iA = $_SESSION['incorrectAnswers'][$x];
                         $signageWord = $q->getLevel()->getArithmeticType();
                         $sign = '';
                                 if($signageWord === 'addition'){
@@ -32,13 +33,14 @@
                         <label>Question: <?php echo $q->getFirstNumber() . " " . $sign . ' ' .$q->getSecondNumber(); ?> </label>
                         <br>
                         
-                        <label>Answer: </label>
-                        <input type="text" name="answer[]" /><div id="error"><?php echo htmlspecialchars($error_message); ?></div><br>                
-                            <?php endforeach; ?>
+                        <label>Correct Answer: <?php echo $q->getAnswer(); ?> </label>
+                        <div id="error"><label>Your Answer: <?php echo $iA; ?> </label></div><br>                
+                            <?php endfor; ?>
+                        <p>Number Incorrect: <?php echo $_SESSION['numIncorrect']; ?> </p>
                         </div>
                     <div id="buttons">
                         <label>&nbsp;</label>
-                        <input type="submit" value="Submit"><br>
+                        <input type="submit" value="Profile"><br>
                         </form>
 
                         <form action="index.php" method="post">

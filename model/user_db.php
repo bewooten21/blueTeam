@@ -128,6 +128,25 @@ class user_db {
             display_db_error($error_message);
         }
     }
+    
+    public static function update_user_level($id, $level) {
+        
+        $db = Database::getDB();
+        $query = $query = 'UPDATE user
+              SET level = :level
+                WHERE id = :id';
+        try {
+            $statement = $db->prepare($query);
+            $statement->bindValue(':level', $level);
+            $statement->bindValue(':id', $id);
+            $row_count = $statement->execute();
+            $statement->closeCursor();
+            return $row_count;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            display_db_error($error_message);
+        }
+    }
 
     public static function delete_by_ID($id) {
         $db = Database::getDB();
