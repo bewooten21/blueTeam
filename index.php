@@ -137,8 +137,9 @@ switch ($action){
         $drill->setQLevel(level_db::get_level_by_id($user->getLevel()));
         $drill->createPracticeDrill();
         $_SESSION['drill'] = $drill;
-        $errorMsg = '';
+        $error_message = '';
         $message = '';
+        include('view/takeDrill.php');
         
         
         

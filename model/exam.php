@@ -4,7 +4,7 @@ require_once 'model/level.php';
 require_once 'model/level_db.php';
 
 class exam {
-    private $questions = [],$level,$time,$questionQuantity;
+    private $questions = [],$time,$level,$questionQuantity;
     
     function __construct($questionQuantity = null, level $level = null, $time = null) {
         $this->questionQuantity = $questionQuantity;
@@ -26,7 +26,7 @@ class exam {
     }
 
     function setQLevel(level $level) {
-        $this->level = $$level;
+        $this->level = $level;
     }
     
     function getTime() {
@@ -34,9 +34,9 @@ class exam {
     }
 
     function setTime($time) {
-        $this->time = $$time;
+        $this->time = $time;
     }
-    
+   
     function getQuestionQuantity() {
         return $this->questionQuantity;
     }
@@ -80,7 +80,7 @@ class exam {
         if(isset($this->questionQuantity) && $this->questionQuantity != null){
             $count = 0;
             while($count < $this->questionQuantity){
-                $question = new question($this->level);
+                $question = new question($level);
                 array_push($this->questions, $question);
                 $count++;
             }
